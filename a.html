@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Web Development Template</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s; 
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            scroll-behavior: smooth; 
+            background-color: #add8e6; 
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-item {
+            margin: 0 10px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s, font-size 0.3s, text-shadow 0.3s; 
+        }
+
+        .nav-link:hover {
+            background-color: #555;
+        }
+
+        .section {
+            height: 100vh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .section h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 70%;
+            margin: 0 auto;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="#web" class="nav-link">Science</a></li>
+            <li class="nav-item"><a href="#program" class="nav-link">Commerce</a></li>
+            <li class="nav-item"><a href="#course" class="nav-link">Arts</a></li>
+        </ul>
+    </nav>
+
+    <section class="section" id="web">
+        <div>
+            <h1 style="color: white;">Science</h1>
+            <p style="color: white;">Choosing Science as your stream opens up the possibility for being able to pursue interesting careers like doctor, engineer, pilot, scientist and more. If you aspire to pursue any of these career options, the stream of Science would prove to be a very strong base for these specializations in the future.</p> <!-- Set text color to white -->
+        </div>
+    </section>
+
+    <section class="section" id="program">
+        <div>
+            <h1>Commerce</h1>
+            <p>Under the commerce stream, the major subjects you will study include- The commerce stream is one of the best streams if you seek financial security when comparing science vs commerce. The subjects of this stream equip you with all the technical and numerical abilities needed for careers in the field.</p>
+        </div>
+    </section>
+
+    <section class="section" id="course">
+        <div>
+            <h1 style="color: red;">Arts</h1> 
+            <p style="color: red;">Improves critical thinking: Arts stream involves analyzing and interpreting different forms of art, which helps in developing critical thinking skills. This skill is useful in various professions like law, journalism, etc.</p> <!-- Set text color to red -->
+        </div>
+    </section>
+
+ 
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            var body = document.body;
+            var sectionWeb = document.getElementById('web');
+            var sectionCourse = document.getElementById('course');
+            var scrollPos = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            var red, green, blue;
+
+            if (scrollPos < 0.5) {
+                
+                red = 0;
+                green = Math.round(scrollPos * 2 * 255);
+                blue = Math.round((1 - scrollPos * 2) * 255);
+
+                
+                sectionWeb.querySelector('h1').style.color = 'white';
+                sectionWeb.querySelector('p').style.color = 'white';
+
+            
+                var navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(function(link) {
+                    link.style.fontSize = '25px'; 
+                    link.style.textShadow = '2px 2px 4px rgba(0,0,0,0.3)'; 
+                });
+            } else {
+               
+                red = Math.round((scrollPos - 0.5) * 2 * 255);
+                green = 255;
+                blue = 0;
+
+                
+                sectionCourse.querySelector('h1').style.color = 'red';
+                sectionCourse.querySelector('p').style.color = 'red';
+            }
+
+            navbar.style.backgroundColor = 'rgb(' + red + ',' + green + ',' + blue + ')';
+            body.style.backgroundColor = 'rgb(' + red + ',' + green + ',' + blue + ')';
+        });
+    </script>
+</body>
+</html>
